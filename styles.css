@@ -86,15 +86,18 @@ body {
   color: var(--muted);
 }
 
-.field input {
+.field input,
+.field select {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 12px 14px;
   font-size: 15px;
   color: var(--text);
+  background: white;
 }
 
-.field input:focus {
+.field input:focus,
+.field select:focus {
   outline: 2px solid rgba(47, 75, 255, 0.3);
   border-color: var(--primary);
 }
@@ -140,6 +143,17 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.card--admin {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-panel {
+  display: grid;
+  gap: 12px;
 }
 
 .preview__header {
@@ -193,6 +207,10 @@ body {
 .signature__department {
   color: var(--muted);
   font-size: 13px;
+}
+
+.signature__department--pt {
+  font-weight: 600;
 }
 
 .signature__contact {

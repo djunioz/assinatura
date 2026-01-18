@@ -40,3 +40,8 @@ Se aparecer a página 404 do GitHub Pages, confira:
 2. **Branch correta**: em **Settings > Pages**, selecione exatamente a branch onde o `index.html` está.
 3. **Pasta correta**: use `/root` (padrão) quando o `index.html` estiver na raiz.
 4. **Tempo de publicação**: após salvar, pode levar alguns minutos até o link funcionar.
+
+## Administração do logotipo
+
+Para alterar o logotipo, clique em **Entrar como admin** e informe a senha `admin123`.
+Depois selecione a nova imagem. Para voltar ao padrão, use **Restaurar padrão**.

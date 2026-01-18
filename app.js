@@ -3,27 +3,29 @@ const preview = document.getElementById("signature-preview");
 const copyButton = document.getElementById("copy-button");
 const clearButton = document.getElementById("clear-button");
 const statusBadge = document.getElementById("status");
+const adminToggle = document.getElementById("admin-toggle");
+const adminPanel = document.getElementById("admin-panel");
+const logoInput = document.getElementById("logo-input");
+const resetLogoButton = document.getElementById("reset-logo");
 
 const config = {
   logoPath: "assets/logo.svg",
   companyName: "Empresa",
   website: "www.empresa.com",
   address: "Av. Paulista, 1000 - São Paulo, SP",
+  phonePrefix: "+55 31 3270-",
 };
+const adminPassword = "admin123";
 
 const departmentMap = new Map([
   ["administrativo", "Administration"],
   ["comercial", "Sales"],
   ["financeiro", "Finance"],
-  ["juridico", "Legal"],
   ["jurídico", "Legal"],
   ["marketing", "Marketing"],
-  ["operacoes", "Operations"],
   ["operações", "Operations"],
   ["recursos humanos", "Human Resources"],
-  ["rh", "Human Resources"],
-  ["ti", "IT"],
-  ["tecnologia", "Technology"],
+  ["tecnologia da informação", "Information Technology"],
   ["vendas", "Sales"],
 ]);
 
@@ -34,23 +36,28 @@ const formatDepartment = (value) => {
   return departmentMap.get(normalized) || value;
 };
 
-const renderSignature = ({ name, email, phone, department }) => {
-  if (!name && !email && !phone && !department) {
+const getLogoPath = () => localStorage.getItem("signatureLogo") || config.logoPath;
+
+const renderSignature = ({ name, email, extension, department }) => {
+  if (!name && !email && !extension && !department) {
     preview.innerHTML = "";
     statusBadge.textContent = "Preencha o formulário para visualizar.";
     return;
   }
 
   statusBadge.textContent = "Assinatura pronta para copiar.";
+  const departmentEnglish = formatDepartment(department || "Departamento");
+  const phoneValue = extension ? `${config.phonePrefix}${extension}` : config.phonePrefix;
 
   preview.innerHTML = `
     <div class="signature__content" id="signature-html">
-      <img class="signature__logo" src="${config.logoPath}" alt="Logotipo" />
+      <img class="signature__logo" src="${getLogoPath()}" alt="Logotipo" />
       <div class="signature__details">
         <span class="signature__name">${name || "Nome"}</span>
-        <span class="signature__department">${formatDepartment(department || "Departamento")}</span>
+        <span class="signature__department signature__department--pt">${department || "Departamento"}</span>
+        <span class="signature__department">${departmentEnglish}</span>
         <span class="signature__contact">${email || "email@empresa.com"}</span>
-        <span class="signature__contact">${phone || "+55 (00) 00000-0000"}</span>
+        <span class="signature__contact">Tel.: ${phoneValue}</span>
         <span class="signature__contact">${config.companyName} · ${config.website}</span>
         <span class="signature__contact">${config.address}</span>
       </div>
@@ -63,7 +70,7 @@ const getFormData = () => {
   return {
     name: data.get("name")?.toString() || "",
     email: data.get("email")?.toString() || "",
-    phone: data.get("phone")?.toString() || "",
+    extension: data.get("extension")?.toString() || "",
     department: data.get("department")?.toString() || "",
   };
 };
@@ -111,6 +118,36 @@ copyButton.addEventListener("click", (event) => {
 
 clearButton.addEventListener("click", () => {
   form.reset();
+  renderSignature(getFormData());
+});
+
+adminToggle.addEventListener("click", () => {
+  const password = window.prompt("Digite a senha de administrador:");
+  if (password === adminPassword) {
+    adminPanel.hidden = false;
+    adminToggle.textContent = "Administrador autenticado";
+    adminToggle.disabled = true;
+  } else if (password) {
+    window.alert("Senha incorreta.");
+  }
+});
+
+logoInput.addEventListener("change", () => {
+  const file = logoInput.files?.[0];
+  if (!file) {
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    localStorage.setItem("signatureLogo", reader.result);
+    renderSignature(getFormData());
+  };
+  reader.readAsDataURL(file);
+});
+
+resetLogoButton.addEventListener("click", () => {
+  localStorage.removeItem("signatureLogo");
   renderSignature(getFormData());
 });
 
