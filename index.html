@@ -1,13 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gerador de Assinatura de E-mail</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div class="page">
+      <header class="page__header">
+        <div class="brand">
+          <img src="assets/logo.svg" alt="Logotipo da empresa" class="brand__logo" />
+          <div>
+            <p class="brand__name">Assinatura de E-mail</p>
+            <p class="brand__tagline">Preencha os dados e copie para o Outlook.</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="card">
+          <h1>Dados do colaborador</h1>
+          <form id="signature-form" class="form">
+            <label class="field">
+              <span>Nome completo</span>
+              <input type="text" name="name" placeholder="Ex.: Mariana Oliveira" required />
+            </label>
+            <label class="field">
+              <span>E-mail corporativo</span>
+              <input type="email" name="email" placeholder="exemplo@empresa.com" required />
+            </label>
+            <label class="field">
+              <span>Ramal</span>
+              <input type="text" name="extension" placeholder="Ex.: 3356" required />
+            </label>
+            <label class="field">
+              <span>Departamento</span>
+              <select name="department" required>
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option value="Administrativo">Administrativo</option>
+                <option value="Comercial">Comercial</option>
+                <option value="Financeiro">Financeiro</option>
+                <option value="Jurídico">Jurídico</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Operações">Operações</option>
+                <option value="Recursos Humanos">Recursos Humanos</option>
+                <option value="Tecnologia da Informação">Tecnologia da Informação</option>
+                <option value="Vendas">Vendas</option>
+              </select>
+            </label>
+          </form>
+
+          <div class="actions">
+            <button id="copy-button" class="primary">Copiar assinatura</button>
+            <button id="clear-button" class="secondary" type="button">Limpar</button>
+          </div>
+          <p class="help">
+            O departamento será exibido em português e em inglês na assinatura.
+          </p>
+        </section>
+
+        <section class="card card--preview">
+          <div class="preview__header">
+            <h2>Pré-visualização da assinatura</h2>
+            <span id="status" class="status">Preencha o formulário para visualizar.</span>
+          </div>
+          <div class="signature" id="signature-preview"></div>
+        </section>
+
+        <section class="card card--admin">
+          <div class="preview__header">
+            <h2>Configuração do logotipo</h2>
+            <button id="admin-toggle" class="secondary" type="button">
+              Entrar como admin
+            </button>
+          </div>
+          <p class="help">
+            Somente administradores podem alterar o logotipo. A mudança vale para todos
+            neste navegador.
+          </p>
+          <div class="admin-panel" id="admin-panel" hidden>
+            <label class="field">
+              <span>Enviar novo logotipo</span>
+              <input type="file" id="logo-input" accept="image/*" />
+            </label>
+            <button id="reset-logo" class="secondary" type="button">Restaurar padrão</button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="page__footer">
+        <p>
+          Para alterar o logotipo no futuro, substitua o arquivo
+          <strong>assets/logo.svg</strong> por outro com o mesmo nome.
+        </p>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
   </body>
 </html>

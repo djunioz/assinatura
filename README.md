@@ -1,100 +1,47 @@
 # Gerador de Assinatura de E-mail
 
-Uma aplicação web moderna para gerar assinaturas profissionais de e-mail para o Microsoft Outlook.
+## Como abrir no navegador
 
-## 🎯 Funcionalidades
+Você pode abrir o arquivo `index.html` diretamente no navegador, iniciar um servidor local simples, ou hospedar via GitHub Pages.
 
-- ✅ Formulário com campos: Nome, E-mail, Telefone e Departamento
-- ✅ Conversão automática de departamento para inglês
-- ✅ Pré-visualização em tempo real da assinatura
-- ✅ Geração de HTML formatado para o Outlook
-- ✅ Cópia automática para a área de transferência
-- ✅ Logotipo configurável centralmente
-- ✅ Interface responsiva e profissional
+### Opção 1 — abrir o arquivo diretamente
 
-## 🚀 Tecnologias Utilizadas
+1. Baixe o repositório (botão **Code** > **Download ZIP** no GitHub) e descompacte.
+2. Abra o arquivo `index.html` com o navegador de sua preferência.
 
-- **React 18** - Framework UI moderno
-- **TypeScript** - Type-safe development
-- **Tailwind CSS** - Estilização utilitária
-- **Vite** - Build tool rápido e moderno
+### Opção 2 — servidor local (recomendado)
 
-## 📦 Instalação
+1. Baixe o repositório (botão **Code** > **Download ZIP** no GitHub) e descompacte.
+2. No terminal, dentro da pasta do projeto, execute:
 
 ```bash
-# Instale as dependências
-npm install
-
-# Inicie o servidor de desenvolvimento
-npm run dev
-
-# Build para produção
-npm run build
+python -m http.server 8000
 ```
 
-## 🔧 Configuração
-
-### Alterar o Logotipo
-
-Edite o arquivo `src/config/branding.ts`:
-
-```typescript
-export const brandingConfig = {
-  logoUrl: 'https://seu-site.com/logo.png',  // ← Altere aqui
-  company: 'Sua Empresa',
-  // ... outras configurações
-}
-```
-
-### Adicionar/Remover Departamentos
-
-Edite `src/utils/departmentTranslations.ts` para adicionar novos departamentos e suas traduções para o inglês.
-
-## 📁 Estrutura do Projeto
+3. Em seguida, acesse no navegador:
 
 ```
-src/
-├── components/         # Componentes React
-│   ├── SignatureForm.tsx
-│   ├── SignaturePreview.tsx
-│   └── App.tsx
-├── config/            # Configurações centralizadas
-│   └── branding.ts
-├── utils/             # Funções utilitárias
-│   ├── signatureGenerator.ts
-│   └── departmentTranslations.ts
-├── main.tsx
-├── App.tsx
-└── index.css
+http://localhost:8000
 ```
 
-## 💡 Como Usar
+### Opção 3 — hospedagem no GitHub Pages
 
-1. Preencha todos os campos do formulário
-2. Clique em "Gerar e Copiar Assinatura"
-3. Abra o Microsoft Outlook
-4. Vá em **File → Options → Mail → Signatures**
-5. Cole a assinatura
-6. Salve as alterações
+1. No repositório do GitHub, vá em **Settings** > **Pages**.
+2. Em **Build and deployment**, selecione **Deploy from a branch**.
+3. Escolha a branch `main` (ou a branch em uso) e a pasta `/root`.
+4. Salve e aguarde o link público gerado.
+5. Acesse a URL exibida em **Pages** para ver a aplicação publicada.
 
-## 🎨 Personalização
+#### Solução para erro 404 no GitHub Pages
 
-### Cores Corporativas
+Se aparecer a página 404 do GitHub Pages, confira:
 
-Edite `src/config/branding.ts`:
+1. **Arquivo `index.html` na raiz do repositório**: o GitHub Pages precisa desse arquivo na pasta configurada (ex.: `/root`).
+2. **Branch correta**: em **Settings > Pages**, selecione exatamente a branch onde o `index.html` está.
+3. **Pasta correta**: use `/root` (padrão) quando o `index.html` estiver na raiz.
+4. **Tempo de publicação**: após salvar, pode levar alguns minutos até o link funcionar.
 
-```typescript
-export const brandingConfig = {
-  primaryColor: '#003366',    // Cor principal
-  accentColor: '#0066CC',     // Cor de destaque
-  // ...
-}
-```
+## Administração do logotipo
 
-### Estilo da Assinatura
-
-Modifique a função `generateSignatureHTML()` em `src/utils/signatureGenerator.ts`.
-
-## 📝 Licença
-
-Projeto desenvolvido para uso interno.
+Para alterar o logotipo, clique em **Entrar como admin** e informe a senha `admin123`.
+Depois selecione a nova imagem. Para voltar ao padrão, use **Restaurar padrão**.
