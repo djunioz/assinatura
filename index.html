@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador de Assinatura de E-mail</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page__header">
+        <div class="brand">
+          <img src="assets/logo.svg" alt="Logotipo da empresa" class="brand__logo" />
+          <div>
+            <p class="brand__name">Assinatura de E-mail</p>
+            <p class="brand__tagline">Preencha os dados e copie para o Outlook.</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="card">
+          <h1>Dados do colaborador</h1>
+          <form id="signature-form" class="form">
+            <label class="field">
+              <span>Nome completo</span>
+              <input type="text" name="name" placeholder="Ex.: Mariana Oliveira" required />
+            </label>
+            <label class="field">
+              <span>E-mail corporativo</span>
+              <input type="email" name="email" placeholder="exemplo@empresa.com" required />
+            </label>
+            <label class="field">
+              <span>Telefone</span>
+              <input type="tel" name="phone" placeholder="(11) 99999-9999" required />
+            </label>
+            <label class="field">
+              <span>Departamento</span>
+              <input
+                type="text"
+                name="department"
+                placeholder="Ex.: Financeiro"
+                required
+              />
+            </label>
+          </form>
+
+          <div class="actions">
+            <button id="copy-button" class="primary">Copiar assinatura</button>
+            <button id="clear-button" class="secondary" type="button">Limpar</button>
+          </div>
+          <p class="help">
+            O departamento será convertido automaticamente para inglês na assinatura.
+          </p>
+        </section>
+
+        <section class="card card--preview">
+          <div class="preview__header">
+            <h2>Pré-visualização da assinatura</h2>
+            <span id="status" class="status">Preencha o formulário para visualizar.</span>
+          </div>
+          <div class="signature" id="signature-preview"></div>
+        </section>
+      </main>
+
+      <footer class="page__footer">
+        <p>
+          Para alterar o logotipo no futuro, substitua o arquivo
+          <strong>assets/logo.svg</strong> por outro com o mesmo nome.
+        </p>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
