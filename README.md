@@ -31,3 +31,12 @@ http://localhost:8000
 3. Escolha a branch `main` (ou a branch em uso) e a pasta `/root`.
 4. Salve e aguarde o link público gerado.
 5. Acesse a URL exibida em **Pages** para ver a aplicação publicada.
+
+#### Solução para erro 404 no GitHub Pages
+
+Se aparecer a página 404 do GitHub Pages, confira:
+
+1. **Arquivo `index.html` na raiz do repositório**: o GitHub Pages precisa desse arquivo na pasta configurada (ex.: `/root`).
+2. **Branch correta**: em **Settings > Pages**, selecione exatamente a branch onde o `index.html` está.
+3. **Pasta correta**: use `/root` (padrão) quando o `index.html` estiver na raiz.
+4. **Tempo de publicação**: após salvar, pode levar alguns minutos até o link funcionar.
